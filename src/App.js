@@ -26,23 +26,25 @@ const App = () => {
   const [apiKey] = useState('AIzaSyCLyCoeqN2jJr4xJeK7k65Oa3foM-fYArg');
 
   return (
-    <ThemeProvider theme={theme}>
-      <Grid
-        container
-        direction="row"
-        justifyContent="center"
-        alignItems="center"
-      >
-        <Grid item xs={12} md={10} lg={8}>
-          <SearchComponent setCoordinates={setCoordinates} apiKey={apiKey} />
-          <MapComponent
-            containerElement={<div style={{ height: '90vh' }} />}
-            mapElement={<div style={{ height: '100%' }} />}
-            coordinates={coordinates}
-          />
+    <>
+      <ThemeProvider theme={theme}>
+        <Grid
+          container
+          direction="row"
+          justifyContent="center"
+          alignItems="center"
+        >
+          <Grid item xs={12} md={10} lg={8}>
+            <SearchComponent setCoordinates={setCoordinates} apiKey={apiKey} />
+            <MapComponent
+              containerElement={<div style={{ height: '80vh', marginTop: '50px' }} />}
+              mapElement={<div style={{ height: '100%' }} />}
+              coordinates={coordinates}
+            />
+          </Grid>
         </Grid>
-      </Grid>
-    </ThemeProvider>
+      </ThemeProvider>
+    </>
   );
 };
 

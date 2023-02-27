@@ -13,42 +13,44 @@ const SearchComponent = ({ setCoordinates, apiKey }) => {
   }
 
   return (
-    <div>
-      <PlacesAutocomplete
-        value={address}
-        onChange={setAddress}
-        onSelect={handleSelect}
-        googleCallbackName="initGoogleAutocomplete"
-        apiKey={apiKey}
-        >
-          {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-            <div>
-              <TextField
-                fullWidth={true}
-                variant="standard"
-                type="search"
-                {...getInputProps({
-                  label: 'Search',
-                  placeholder: 'Search place name, address, or plus code',
-                  inputProps: {style: { fontSize: '1.1rem'}}
-                })}
-              />
+    <div style={{ position: 'relative', width: '100%', zIndex: 100 }}>
+      <div style={{ position: 'absolute', width: '100%', backgroundColor: '#fff' }}>
+        <PlacesAutocomplete
+          value={address}
+          onChange={setAddress}
+          onSelect={handleSelect}
+          googleCallbackName="initGoogleAutocomplete"
+          apiKey={apiKey}
+          >
+            {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
               <div>
-                {loading ? (
-                  <CircularProgress size={24} />
-                ) : (
-                  suggestions.map((suggestion) => {
-                    return (
-                      <div {...getSuggestionItemProps(suggestion, { style: { fontSize: '1.1rem' } })}>
-                        {suggestion.description}
-                      </div>
-                    );
-                  })
-                )}
+                <TextField
+                  fullWidth={true}
+                  variant="standard"
+                  type="search"
+                  {...getInputProps({
+                    label: 'Search',
+                    placeholder: 'Search place name, address, or plus code',
+                    inputProps: {style: { fontSize: '1.1rem'}}
+                  })}
+                />
+                <div>
+                  {loading ? (
+                    <CircularProgress size={24} />
+                  ) : (
+                    suggestions.map((suggestion) => {
+                      return (
+                        <div {...getSuggestionItemProps(suggestion, { style: { fontSize: '1.1rem', fontFamily: 'Roboto, sans-serif', fontWeight: 'normal', lineHeight: '1.5', color: '#333' } })}>
+                          {suggestion.description}
+                        </div>
+                      );
+                    })
+                  )}
+                </div>
               </div>
-            </div>
-          )}
-      </PlacesAutocomplete>
+            )}
+        </PlacesAutocomplete>
+      </div>
     </div>
   );
 };
