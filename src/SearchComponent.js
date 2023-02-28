@@ -2,14 +2,19 @@ import React, { useState } from 'react';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import { CircularProgress, TextField } from '@material-ui/core';
 
+import { useDispatch } from 'react-redux';
+import { addSearchResult } from './searchResultsSlice';
+
 const SearchComponent = ({ setCoordinates, apiKey }) => {
   const [address, setAddress] = useState('');
+  const dispatch = useDispatch();
 
   const handleSelect = async (selectedAddress) => {
     setAddress(selectedAddress);
     const results = await geocodeByAddress(selectedAddress);
     const latLng = await getLatLng(results[0]);
     setCoordinates(latLng);
+    dispatch(addSearchResult({ address: selectedAddress, latLng }));
   }
 
   return (

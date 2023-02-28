@@ -8,6 +8,7 @@ My solution for the Maybank Front End assessment.
 
 ## Completed Tasks
 * Place Autocomplete and Map
+* Redux
 * Material UI
 
 ## Caution
